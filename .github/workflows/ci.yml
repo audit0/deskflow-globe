@@ -1,0 +1,20 @@
+name: Verify and build
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  macos:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - name: Gesture regressions and script syntax
+        run: bash scripts/test.sh
+      - name: Build universal package
+        run: bash scripts/build.sh
+      - name: Verify archive checksums
+        run: cd build && shasum -a 256 -c SHA256SUMS
+      - name: Check packaged installer without changing system settings
+        run: bash build/Deskflow-Globe-1.0.0-macos-universal/Install.command --check
