@@ -38,7 +38,7 @@ Deskflow Globe does **not** disable or bypass Secure Input. It also cannot fix W
 
 Run `Uninstall.command` from the release folder or the installed support folder. It stops this release's launcher and app, and moves installed files and its LaunchAgent to a dated backup in Application Support. Deskflow, your layouts, and your previous switcher's login item are left intact. You can restart your former switcher and remove Deskflow Globe from Input Monitoring.
 
-The earlier local prototype (`local.deskflow.globe.launcher`) is a separate installation. The release installer refuses to install while that prototype is active; use the prototype's own rollback command first. An existing release installation is also preserved instead of silently overwritten.
+The earlier local prototype (`local.deskflow.globe.launcher`) is a separate installation. The release installer refuses to install while that prototype's LaunchAgent is installed, even if temporarily stopped; use the prototype's own rollback command first. An existing release installation is also preserved instead of silently overwritten.
 
 ## Build and verify
 

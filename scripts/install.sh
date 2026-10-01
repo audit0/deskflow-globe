@@ -19,8 +19,9 @@ if [ "$check" = 1 ]; then
   echo "Package verified. Install destination: $support (no changes made)."
   exit 0
 fi
-if /bin/launchctl print "gui/$(/usr/bin/id -u)/local.deskflow.globe.launcher" >/dev/null 2>&1; then
-  echo 'The local prototype is active. Stop its launcher using its rollback command before installing the release.' >&2
+if [ -e "$HOME/Library/LaunchAgents/local.deskflow.globe.launcher.plist" ] || \
+   /bin/launchctl print "gui/$(/usr/bin/id -u)/local.deskflow.globe.launcher" >/dev/null 2>&1; then
+  echo 'The local prototype is installed. Remove its launcher using its rollback command before installing the release.' >&2
   exit 1
 fi
 if [ -e "$support/Deskflow Globe.app" ] || [ -e "$agent" ]; then
